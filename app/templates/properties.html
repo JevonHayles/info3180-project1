@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<h1>Properties</h2>
+{% include 'flash_messages.html' %}
+
+
+{% if properties %}
+    <ul>
+        {% for property in properties %}
+            <div class = 'property'>
+                <li>
+                    <img src="{{ url_for('get_image', filename=property.photo) }}" alt="Property Image">
+                    <h3>{{ property.title }}</h3>
+                    <p>{{ property.location }}</p>
+                    <p> ${{ property.price }}</p>
+                    <a href= "{{ url_for('property_id', propertyid=property.id) }}" class="btn btn-primary"> View Property </a>
+
+                </li>
+            </div>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No properties found.</p>
+{% endif %}
+
+
+{% endblock %}
